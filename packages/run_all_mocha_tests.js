@@ -11,7 +11,7 @@ require("ts-node").register({
     transpileOnly: true
 });
 
-Error.stackTraceLimit = Infinity;
+Error.stackTraceLimit = 20;
 
 
 require("mocha-clean");
@@ -40,6 +40,15 @@ let mocha = new Mocha({
     bail: true,
     fullTrace: true,
     grep: filterOpts,
+  
+    /*
+    fullTrace: true,
+    parallel: true,
+    jobs: 16,
+    */
+    // growl: true,
+    // checkLeaks: true,
+
     reporter: process.env.REPORTER || "spec", //"nyan", //"tap"
     slow: 6000,
 });
