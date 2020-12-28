@@ -335,8 +335,15 @@ if (process.env.NODEOPCUATESTREPORTER) {
     mocha.reporter(MyReporter);
 }
 
-// Run the tests.
-mocha.run((failures) => {
-    process.exit(failures);  // exit with non-zero status if there were failures
-});
+try {
+    // Run the tests.
+    mocha.run((failures) => {
+        process.exit(failures);  // exit with non-zero status if there were failures
+    });
+}
+catch(err) {
 
+    console.log("---------------------------------- mocha run error");
+    console.log(err);
+    process.exit(-1);
+}
